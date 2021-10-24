@@ -1,3 +1,4 @@
+import 'package:chat_app/src/components/custom_input.dart';
 import 'package:chat_app/values/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -68,41 +69,44 @@ class __FormState extends State<_Form> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
-        children: [
-          TextField(),
-          TextField(),
-          TextButton(
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.all(0),
-              backgroundColor: Colors.white,
-              textStyle: const TextStyle(fontSize: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            onPressed: () {
-              Navigator.pop(context, false);
-            },
-            child: Container(
-              padding: const EdgeInsets.all(0),
-              height: 40,
-              child: const Center(
-                child: Material(
-                  type: MaterialType.transparency,
-                  child: Text(
-                    "Aceptar",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+        children: const [
+          CustomInput(),
+          SizedBox(height: 20),
+          CustomInput(),
+          // TextField(),
+          // TextButton(
+          //   style: TextButton.styleFrom(
+          //     padding: const EdgeInsets.all(0),
+          //     backgroundColor: Colors.white,
+          //     textStyle: const TextStyle(fontSize: 20),
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(20),
+          //     ),
+          //   ),
+          //   onPressed: () {
+          //     Navigator.pop(context, false);
+          //   },
+          //   child: Container(
+          //     padding: const EdgeInsets.all(0),
+          //     height: 40,
+          //     child: const Center(
+          //       child: Material(
+          //         type: MaterialType.transparency,
+          //         child: Text(
+          //           "Aceptar",
+          //           textAlign: TextAlign.center,
+          //           style: TextStyle(
+          //             color: Colors.blue,
+          //             fontWeight: FontWeight.bold,
+          //             fontSize: 20,
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
