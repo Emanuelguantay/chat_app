@@ -144,7 +144,6 @@ class _ChatPageState extends State<ChatPage> {
       _messages.insert(0, newMessage);
     setState(() {
       _hasText = false;
-      
     });
   }
 }
