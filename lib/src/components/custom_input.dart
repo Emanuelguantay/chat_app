@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 
 class CustomInput extends StatelessWidget {
-  const CustomInput({Key? key}) : super(key: key);
+  final IconData icon;
+  final String placeholder;
+  final TextEditingController textController;
+  final TextInputType keyboardType;
+  final bool isPassword;
+
+  const CustomInput(
+      {Key? key,
+      required this.icon,
+      required this.placeholder,
+      required this.textController,
+      this.keyboardType = TextInputType.text,
+      this.isPassword = false})
+      : super(key: key);
+
+  // const CustomInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +33,14 @@ class CustomInput extends StatelessWidget {
             ]),
         child: TextField(
           autocorrect: false,
-          keyboardType: TextInputType.text,
-          //obscureText: true,
+          keyboardType: keyboardType,
+          controller: textController,
+          obscureText: isPassword,
           decoration: InputDecoration(
-              prefixIcon: Icon(Icons.mail_outline),
+              prefixIcon: Icon(icon),
               focusedBorder: InputBorder.none,
               border: InputBorder.none,
-              hintText: 'Email'),
+              hintText: placeholder),
         ));
   }
 }

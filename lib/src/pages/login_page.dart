@@ -66,15 +66,29 @@ class _Form extends StatefulWidget {
 }
 
 class __FormState extends State<_Form> {
+  final TextEditingController emailControler = TextEditingController();
+  final TextEditingController passwordControler = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
-        children: const [
-          CustomInput(),
+        children: [
+          CustomInput(
+            icon: Icons.mail_outline,
+            placeholder: 'Email',
+            keyboardType: TextInputType.emailAddress,
+            textController: emailControler,
+          ),
           SizedBox(height: 20),
-          CustomInput(),
+          CustomInput(
+            icon: Icons.lock_clock_outlined,
+            placeholder: 'Email',
+            keyboardType: TextInputType.text,
+            textController: passwordControler,
+            isPassword: true,
+          ),
           // TextField(),
           // TextButton(
           //   style: TextButton.styleFrom(
