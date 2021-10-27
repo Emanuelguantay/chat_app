@@ -121,7 +121,7 @@ class _Labels extends StatelessWidget {
           const SizedBox(height: 15,),
           GestureDetector(
             onTap: (){
-              Navigator.pushReplacementNamed(context, 'register');
+              Navigator.pushNamed(context, 'register');
             },
             child: Text("¡Crea una ahora!", style: TextStyle(color : Colors.blue[600], fontSize: 18, fontWeight: FontWeight.bold))),
         ],
