@@ -1,3 +1,4 @@
+import 'package:chat_app/src/components/button_component.dart';
 import 'package:chat_app/src/components/custom_input.dart';
 import 'package:chat_app/src/components/logo_component.dart';
 import 'package:chat_app/values/colors.dart';
@@ -12,20 +13,25 @@ class LoginPage extends StatelessWidget {
         backgroundColor: kGray,
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const LogoComponent(),
-                _Form(),
-                const _Labels(),
-                const SizedBox(height: 10),
-          
-                const Text("Terminos y condiciones de uso",
-                  style: TextStyle(fontWeight: FontWeight.w200
-                )),
-              ],
+            padding: const EdgeInsets.only(top: 10),
+            child: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.9,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const LogoComponent(),
+                    _Form(),
+                    const _Labels(),
+                    //const SizedBox(height: 10),
+
+                    const Text("Terminos y condiciones de uso",
+                      style: TextStyle(fontWeight: FontWeight.w200
+                    )),
+                  ],
+                ),
+              ),
             ),
           ),
         ));
@@ -72,7 +78,7 @@ class __FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
@@ -82,46 +88,21 @@ class __FormState extends State<_Form> {
             keyboardType: TextInputType.emailAddress,
             textController: emailControler,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           CustomInput(
             icon: Icons.lock_clock_outlined,
-            placeholder: 'Email',
+            placeholder: 'Contraseña',
             keyboardType: TextInputType.text,
             textController: passwordControler,
             isPassword: true,
           ),
           // TextField(),
-          // TextButton(
-          //   style: TextButton.styleFrom(
-          //     padding: const EdgeInsets.all(0),
-          //     backgroundColor: Colors.white,
-          //     textStyle: const TextStyle(fontSize: 20),
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(20),
-          //     ),
-          //   ),
-          //   onPressed: () {
-          //     Navigator.pop(context, false);
-          //   },
-          //   child: Container(
-          //     padding: const EdgeInsets.all(0),
-          //     height: 40,
-          //     child: const Center(
-          //       child: Material(
-          //         type: MaterialType.transparency,
-          //         child: Text(
-          //           "Aceptar",
-          //           textAlign: TextAlign.center,
-          //           style: TextStyle(
-          //             color: Colors.blue,
-          //             fontWeight: FontWeight.bold,
-          //             fontSize: 20,
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          const SizedBox(height: 30),
+          ButtonComponent(
+            label: "Ingresar",
+            ontap: (){},
+            backgroundColor: Colors.blue,
+          )
         ],
       ),
     );
@@ -134,14 +115,12 @@ class _Labels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+    return Column(
         children: [
           const Text("¿No tienes cuentas?", style: TextStyle(color : Colors.black54, fontSize: 15, fontWeight: FontWeight.w300)),
           const SizedBox(height: 15,),
           Text("¡Crea una ahora!", style: TextStyle(color : Colors.blue[600], fontSize: 18, fontWeight: FontWeight.bold)),
         ],
-      ),
     );
   }
 }
