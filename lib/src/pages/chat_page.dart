@@ -13,6 +13,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final _textController = TextEditingController();
   final _focusNode = FocusNode();
+  bool _hasText = false;
 
   @override
   Widget build(BuildContext context) {
@@ -83,8 +84,14 @@ class _ChatPageState extends State<ChatPage> {
                 child: TextField(
               controller: _textController,
               onSubmitted: _handleSubmit,
-              onChanged: (String text) {
-                //TODO: Cuando hay valor postear
+              onChanged: (text) {
+                setState(() {
+                  if (text.trim().length > 0) {
+                    _hasText = true;
+                  } else {
+                    _hasText = false;
+                  }
+                });
               },
               decoration:
                   const InputDecoration.collapsed(hintText: 'Enviar mensaje'),
@@ -100,8 +107,17 @@ class _ChatPageState extends State<ChatPage> {
                     : Container(
                         margin: const EdgeInsets.symmetric(horizontal: 4.0),
                         child: IconButton(
-                          icon: Icon(Icons.send, color: Colors.blue[400],),
-                          onPressed: () {},
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          icon: Icon(
+                            Icons.send,
+                            color: _hasText
+                              ? Colors.blue[400]
+                              : null,
+                          ),
+                          onPressed: _hasText
+                              ? () => _handleSubmit(_textController.text.trim())
+                              : null,
                         ),
                       ))
           ],
@@ -110,9 +126,12 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  _handleSubmit(String text){
+  _handleSubmit(String text) {
     print(text);
-    _textController.clear();
-    _focusNode.requestFocus();
+    setState(() {
+      _hasText = false;
+      _textController.clear();
+      _focusNode.requestFocus();
+    });
   }
 }
