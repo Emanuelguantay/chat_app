@@ -1,4 +1,5 @@
 import 'package:chat_app/src/components/custom_input.dart';
+import 'package:chat_app/src/components/logo_component.dart';
 import 'package:chat_app/values/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +17,9 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const _Logo(),
+                const LogoComponent(),
                 _Form(),
-                _Labels(),
+                const _Labels(),
                 const SizedBox(height: 10),
           
                 const Text("Terminos y condiciones de uso",
@@ -31,32 +32,32 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _Logo extends StatelessWidget {
-  const _Logo({Key? key}) : super(key: key);
+// class _Logo extends StatelessWidget {
+//   const _Logo({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 50),
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          Image(
-            image: AssetImage('assets/tag-logo.png'),
-            alignment: Alignment.center,
-            height: 100,
-            width: 150,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text("Messenger", style: TextStyle(fontSize: 30))
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       margin: const EdgeInsets.only(top: 50),
+//       width: double.infinity,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: const [
+//           Image(
+//             image: AssetImage('assets/tag-logo.png'),
+//             alignment: Alignment.center,
+//             height: 100,
+//             width: 150,
+//           ),
+//           SizedBox(
+//             height: 20,
+//           ),
+//           Text("Messenger", style: TextStyle(fontSize: 30))
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class _Form extends StatefulWidget {
   _Form({Key? key}) : super(key: key);
