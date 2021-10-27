@@ -119,7 +119,11 @@ class _Labels extends StatelessWidget {
         children: [
           const Text("¿No tienes cuentas?", style: TextStyle(color : Colors.black54, fontSize: 15, fontWeight: FontWeight.w300)),
           const SizedBox(height: 15,),
-          Text("¡Crea una ahora!", style: TextStyle(color : Colors.blue[600], fontSize: 18, fontWeight: FontWeight.bold)),
+          GestureDetector(
+            onTap: (){
+              Navigator.pushReplacementNamed(context, 'register');
+            },
+            child: Text("¡Crea una ahora!", style: TextStyle(color : Colors.blue[600], fontSize: 18, fontWeight: FontWeight.bold))),
         ],
     );
   }
