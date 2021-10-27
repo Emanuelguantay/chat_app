@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chat_app/src/components/chat_message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,15 @@ class _ChatPageState extends State<ChatPage> {
   final _textController = TextEditingController();
   final _focusNode = FocusNode();
   bool _hasText = false;
+
+  List<ChatMessage> _messages =[
+    ChatMessage(uid: '123', text: 'Hola Mundo',),
+    ChatMessage(uid: '12', text: 'Hola Mundo',),
+    ChatMessage(uid: '123', text: 'Hola Mundo',),
+    ChatMessage(uid: '12', text: 'Hola Mundo',),
+    ChatMessage(uid: '123', text: 'Hola Mundo',),
+    ChatMessage(uid: '123', text: 'Hola Mundo',),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +74,13 @@ class _ChatPageState extends State<ChatPage> {
   _list() {
     return ListView.separated(
         itemBuilder: (context, index) {
-          return Text('$index');
+          return _messages[index];
         },
         reverse: true,
         separatorBuilder: (context, index) {
           return SizedBox(height: 10);
         },
-        itemCount: 6);
+        itemCount: _messages.length);
   }
 
   Widget _inputChat() {
@@ -128,10 +138,13 @@ class _ChatPageState extends State<ChatPage> {
 
   _handleSubmit(String text) {
     print(text);
+    _textController.clear();
+      _focusNode.requestFocus();
+      final newMessage = ChatMessage(uid: '123', text: text);
+      _messages.insert(0, newMessage);
     setState(() {
       _hasText = false;
-      _textController.clear();
-      _focusNode.requestFocus();
+      
     });
   }
 }
