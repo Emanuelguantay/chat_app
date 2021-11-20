@@ -1,8 +1,11 @@
+import 'package:chat_app/helpers/alert.dart';
+import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/src/components/button_component.dart';
 import 'package:chat_app/src/components/custom_input.dart';
 import 'package:chat_app/src/components/logo_component.dart';
 import 'package:chat_app/values/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -51,6 +54,8 @@ class __FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
@@ -81,7 +86,16 @@ class __FormState extends State<_Form> {
           const SizedBox(height: 30),
           ButtonComponent(
             label: "Ingresar",
-            ontap: () {},
+            ontap: authService.authenticating? null: () async{
+              FocusScope.of(context).unfocus();
+              final registerOk = await authService.register(nameControler.text, emailControler.text, passwordControler.text);
+              if (registerOk){
+                Navigator.pushReplacementNamed(context, 'users');
+              }else{
+                //Mostrar alerta
+                showAlert(context, 'Registro incorrecto', 'Revisar datos');
+              }
+            },
             backgroundColor: Colors.blue,
           )
         ],
