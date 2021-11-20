@@ -80,6 +80,8 @@ class __FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
@@ -102,11 +104,9 @@ class __FormState extends State<_Form> {
           const SizedBox(height: 30),
           ButtonComponent(
             label: "Ingresar",
-            ontap: () async{
-              print(emailControler.text);
-              print(passwordControler.text);
-              final authService = Provider.of<AuthService>(context, listen: false);
-              await authService.Login(emailControler.text, passwordControler.text);
+            ontap: authService.authenticating? null: () {
+              FocusScope.of(context).unfocus();
+              authService.login(emailControler.text, passwordControler.text);
             },
             backgroundColor: Colors.blue,
           )

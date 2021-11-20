@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 
 class ButtonComponent extends StatelessWidget {
-  final Function() ontap;
+  final Function()? ontap;
   final String label;
   final Color backgroundColor;
+  final bool isEnabled;
 
   const ButtonComponent(
       {Key? key, 
-      required this.ontap, 
-      required this.label, 
-      required this.backgroundColor})
+      this.ontap, 
+      required this.label,
+      required this.backgroundColor,
+      this.isEnabled = true})
       : super(key: key);
   // const ButtonComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => ontap(),
+      onPressed: () => ontap!(),
       style: TextButton.styleFrom(
         padding: const EdgeInsets.all(0),
-        backgroundColor: backgroundColor,
+        backgroundColor: ontap != null ? backgroundColor: Colors.grey,
         textStyle: const TextStyle(fontSize: 20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
