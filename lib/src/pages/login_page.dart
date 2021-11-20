@@ -1,3 +1,4 @@
+import 'package:chat_app/helpers/alert.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/src/components/button_component.dart';
 import 'package:chat_app/src/components/custom_input.dart';
@@ -104,9 +105,15 @@ class __FormState extends State<_Form> {
           const SizedBox(height: 30),
           ButtonComponent(
             label: "Ingresar",
-            ontap: authService.authenticating? null: () {
+            ontap: authService.authenticating? null: () async{
               FocusScope.of(context).unfocus();
-              authService.login(emailControler.text, passwordControler.text);
+              final loginOk = await authService.login(emailControler.text, passwordControler.text);
+              if (loginOk){
+                //TODO: Navegar
+              }else{
+                //Mostrar alerta
+                showAlert(context, 'Login incorrecto', 'Revisar credenciales');
+              }
             },
             backgroundColor: Colors.blue,
           )
