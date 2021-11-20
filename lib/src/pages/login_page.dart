@@ -1,8 +1,10 @@
+import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/src/components/button_component.dart';
 import 'package:chat_app/src/components/custom_input.dart';
 import 'package:chat_app/src/components/logo_component.dart';
 import 'package:chat_app/values/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -100,7 +102,12 @@ class __FormState extends State<_Form> {
           const SizedBox(height: 30),
           ButtonComponent(
             label: "Ingresar",
-            ontap: (){},
+            ontap: () async{
+              print(emailControler.text);
+              print(passwordControler.text);
+              final authService = Provider.of<AuthService>(context, listen: false);
+              await authService.Login(emailControler.text, passwordControler.text);
+            },
             backgroundColor: Colors.blue,
           )
         ],

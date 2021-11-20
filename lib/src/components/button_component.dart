@@ -16,7 +16,7 @@ class ButtonComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => ontap,
+      onPressed: () => ontap(),
       style: TextButton.styleFrom(
         padding: const EdgeInsets.all(0),
         backgroundColor: backgroundColor,
